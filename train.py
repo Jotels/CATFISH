@@ -74,6 +74,7 @@ def main():
         frontend=frontend,
         encoder=encoder,
         cfg=clf_cfg,
+        label_map=label_map,
     )
     model = model.to("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -87,7 +88,7 @@ def main():
         accelerator="gpu" if torch.cuda.is_available() else "cpu",
         devices=torch.cuda.device_count() if torch.cuda.is_available() else 1,
         logger=wandb_logger,
-        callbacks=[pl.callbacks.ModelCheckpoint(monitor='val_acc', mode='max')],
+        callbacks=[pl.callbacks.ModelCheckpoint(monitor='Val/Acc', mode='max')],
         max_time=cfg['max_time'],
     )
     trainer.fit(model, data)
