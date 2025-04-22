@@ -1,14 +1,9 @@
 import argparse
-import os
 import yaml
 import torch
-import torchaudio
-from torch import nn
-from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
 from pytorch_lightning.loggers import WandbLogger
-from pathlib import Path
-from classifier import Classifier, ShipDataset, ShipDataModule
+from classifier import Classifier, ShipDataModule
 from leaf.leaf import PCEN
 from leaf.efficientleaf import EfficientLeaf, LogTBN
 from efficientnet_pytorch import EfficientNet
@@ -25,12 +20,9 @@ def main():
     # label mapping
     label_map = {label: idx for idx, label in enumerate(cfg['labels'])}
     data = ShipDataModule(
-        train_csvs=cfg['train_csvs'],
-        val_csvs=cfg['val_csvs'],
-        test_csvs=cfg['test_csvs'],
-        audio_root=cfg['audio_root'],
-        sample_rate=cfg['sample_rate'],
-        duration=cfg['duration'],
+        train_paths=cfg['train_paths'],
+        val_paths=cfg['val_paths'],
+        test_paths=cfg['test_paths'],
         label_map=label_map,
         batch_size=cfg['batch_size'],
         num_workers=cfg['num_workers']
@@ -92,7 +84,8 @@ def main():
     )
     trainer = pl.Trainer(
         max_epochs=cfg['max_epochs'],
-        gpus=1 if torch.cuda.is_available() else 0,
+        accelerator="gpu" if torch.cuda.is_available() else "cpu",
+        devices=torch.cuda.device_count() if torch.cuda.is_available() else 1,
         logger=wandb_logger,
         callbacks=[pl.callbacks.ModelCheckpoint(monitor='val_acc', mode='max')],
         max_time=cfg['max_time'],

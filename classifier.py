@@ -54,8 +54,6 @@ class ShipDataModule(pl.LightningDataModule):
     def __init__(self, train_paths,
                  val_paths,
                  test_paths,
-                 sample_rate,
-                 duration,
                  label_map,
                  batch_size,
                  num_workers):
