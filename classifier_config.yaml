@@ -21,6 +21,7 @@ log1p_trainable: True
 log1p_per_band: True
 tbn_median_filter: True
 tbn_median_filter_append: True
+pcen_learn_logs: False
 
 classifier:
   use_aux: False

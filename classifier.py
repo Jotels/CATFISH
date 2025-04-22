@@ -111,7 +111,7 @@ class Classifier(pl.LightningModule):
             nn.Flatten()
         )
 
-        self.use_aux = cfg.use_aux
+        self.use_aux = cfg["use_aux"]
         if self.use_aux:
             self.aux_fc = nn.Sequential(
                 nn.Linear(5, 128),
@@ -123,8 +123,8 @@ class Classifier(pl.LightningModule):
 
         self._head = nn.Linear(head_in, num_outputs)
         self.loss_fn = nn.CrossEntropyLoss(label_smoothing=0.1)
-        self.lr = cfg.lr
-        self.weight_decay = cfg.weight_decay
+        self.lr = cfg["lr"]
+        self.weight_decay = cfg["weight_decay"]
         self.reverse_label_map = {v: k for k, v in label_map.items()}
 
         # buffers
