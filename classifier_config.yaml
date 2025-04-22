@@ -1,0 +1,60 @@
+# Paths and data settings
+train_paths: [/home/scratch3/jels/VTUAD/inclusion_2000_exclusion_4000/train,
+             /home/scratch3/jels/VTUAD/inclusion_3000_exclusion_5000/train,
+             /home/scratch3/jels/VTUAD/inclusion_4000_exclusion_6000/train
+              ]
+val_paths: [/home/scratch3/jels/VTUAD/inclusion_2000_exclusion_4000/validation,
+             /home/scratch3/jels/VTUAD/inclusion_3000_exclusion_5000/validation,
+             /home/scratch3/jels/VTUAD/inclusion_4000_exclusion_6000/validation
+              ]
+test_paths: [/home/scratch3/jels/VTUAD/inclusion_2000_exclusion_4000/test,
+             /home/scratch3/jels/VTUAD/inclusion_3000_exclusion_5000/test,
+             /home/scratch3/jels/VTUAD/inclusion_4000_exclusion_6000/test
+              ]
+
+sample_rate: 32000        # Hz
+duration: 1.0             # seconds per clip
+
+compression: TBN
+log1p_initial_a: 0
+log1p_trainable: True
+log1p_per_band: True
+tbn_median_filter: True
+tbn_median_filter_append: True
+
+classifier:
+  use_aux: False
+  lr: 0.0003
+  weight_decay: 0.0000
+
+efficientleaf:
+  num_groups: 8
+  stride_factor: 16
+  n_filters: 80
+  min_freq: 60
+  max_freq: 7800
+  sample_rate: 32000
+  conv_win_factor: 6
+  window_len: 25.0
+  window_stride: 10.0
+
+
+# Data loading
+batch_size: 32
+num_workers: 4
+
+# Label mapping
+labels:
+  - tug
+  - tanker
+  - passengership
+  - cargo
+  - background
+
+# Training
+max_epochs: 1000
+max_time: '6:12:00:00'
+
+# WandB logging
+run_name: "efficientleaf"
+wandb_dir: "./wandb_logs"
