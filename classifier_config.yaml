@@ -1,15 +1,15 @@
 # Paths and data settings
-train_paths: [/home/scratch3/jels/VTUAD/inclusion_2000_exclusion_4000/train,
-             /home/scratch3/jels/VTUAD/inclusion_3000_exclusion_5000/train,
-             /home/scratch3/jels/VTUAD/inclusion_4000_exclusion_6000/train
+train_paths: [.../VTUAD/inclusion_2000_exclusion_4000/train,
+             .../VTUAD/inclusion_3000_exclusion_5000/train,
+             .../VTUAD/inclusion_4000_exclusion_6000/train
               ]
-val_paths: [/home/scratch3/jels/VTUAD/inclusion_2000_exclusion_4000/validation,
-             /home/scratch3/jels/VTUAD/inclusion_3000_exclusion_5000/validation,
-             /home/scratch3/jels/VTUAD/inclusion_4000_exclusion_6000/validation
+val_paths: [.../VTUAD/inclusion_2000_exclusion_4000/validation,
+             .../VTUAD/inclusion_3000_exclusion_5000/validation,
+             .../VTUAD/inclusion_4000_exclusion_6000/validation
               ]
-test_paths: [/home/scratch3/jels/VTUAD/inclusion_2000_exclusion_4000/test,
-             /home/scratch3/jels/VTUAD/inclusion_3000_exclusion_5000/test,
-             /home/scratch3/jels/VTUAD/inclusion_4000_exclusion_6000/test
+test_paths: [.../VTUAD/inclusion_2000_exclusion_4000/test,
+             .../VTUAD/inclusion_3000_exclusion_5000/test,
+             .../VTUAD/inclusion_4000_exclusion_6000/test
               ]
 
 sample_rate: 32000        # Hz
