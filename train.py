@@ -10,7 +10,7 @@ from efficientnet_pytorch import EfficientNet
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='poseidon/classifier_config.yaml')
+    parser.add_argument('--config', type=str, default='../classifier_config.yaml')
     args = parser.parse_args()
     with open(args.config) as f:
         cfg = yaml.safe_load(f)
